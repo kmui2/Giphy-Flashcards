@@ -27,4 +27,11 @@ export class NavbarComponent implements OnInit {
     {cssClass: 'alert-success', timeout: 3000});
   }
 
+
+    isIn = false;   // store state
+    toggleState() { // click handler
+        let bool = this.isIn;
+        this.isIn = bool === false ? true : false;
+    }
+
 }

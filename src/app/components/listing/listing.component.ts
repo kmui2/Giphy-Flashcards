@@ -9,14 +9,14 @@ import * as firebase from 'firebase';
   styleUrls: ['./listing.component.css']
 })
 export class ListingComponent implements OnInit {
-  id:any;
+  id: any;
   listing: any;
-  imageUrl:any;
+  imageUrl: any;
 
   constructor(
     private firebaseService: FirebaseService,
-    private router:Router,
-    private route:ActivatedRoute
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -38,7 +38,7 @@ export class ListingComponent implements OnInit {
     });
   }
 
-  onDeleteClick(){
+  onDeleteClick() {
     this.firebaseService.deleteListing(this.id);
 
     this.router.navigate(['/listings']);
