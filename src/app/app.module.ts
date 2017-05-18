@@ -14,6 +14,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ListingComponent } from './components/listing/listing.component';
 import { AddListingComponent } from './components/add-listing/add-listing.component';
 import { EditListingComponent } from './components/edit-listing/edit-listing.component';
+import { EditFlashcardComponent } from './components/edit-flashcard/edit-flashcard.component';
+import { AddFlashcardComponent } from './components/add-flashcard/add-flashcard.component';
+import { FlashcardComponent } from './components/flashcard/flashcard.component';
+import { FlashcardsComponent } from './components/flashcards/flashcards.component';
 
 export const firebaseConfig = {
     apiKey: "AIzaSyAKue96FibAqWFcQ53_Ya8neqOSmZu4K7E",
@@ -32,9 +36,13 @@ const firebaseAuthConfig = {
 const appRoutes: Routes = [
   {path:'', component:HomeComponent},
   {path: 'listings', component:ListingsComponent},
+  {path: 'flashcards', component:FlashcardsComponent},
   {path:'listing/:id', component:ListingComponent},
+  {path:'flashcard/:id', component:FlashcardComponent},
   {path: 'add-listing', component:AddListingComponent},
-  {path:'edit-listing/:id', component:EditListingComponent}
+  {path: 'add-flashcard', component:AddFlashcardComponent},
+  {path:'edit-listing/:id', component:EditListingComponent},
+  {path: 'edit-flashcard/:id', component:EditFlashcardComponent}
 ]
 
 @NgModule({
@@ -45,7 +53,11 @@ const appRoutes: Routes = [
     NavbarComponent,
     ListingComponent,
     AddListingComponent,
-    EditListingComponent
+    EditListingComponent,
+    EditFlashcardComponent,
+    AddFlashcardComponent,
+    FlashcardComponent,
+    FlashcardsComponent
   ],
   imports: [
     BrowserModule,

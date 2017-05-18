@@ -1,0 +1,5 @@
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let flashcard of flashcards">
+    <a [routerLink]="['/flashcard/'+flashcard.$key]">{{flashcard.word}}</a>
+  </li>
+</ul>

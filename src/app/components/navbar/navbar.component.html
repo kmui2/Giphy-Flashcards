@@ -15,6 +15,8 @@
         <li><a [routerLink]="['/']">Home</a></li>
         <li *ngIf="(af.auth | async)"><a [routerLink]="['/listings']">Listings</a></li>
         <li *ngIf="(af.auth | async)"><a [routerLink]="['/add-listing']">Add Listing</a></li>
+        <li *ngIf="(af.auth | async)"><a [routerLink]="['/flashcards']">Flashcards</a></li>
+        <li *ngIf="(af.auth | async)"><a [routerLink]="['/add-flashcard']">Add Flashcard</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li *ngIf="!(af.auth | async)"><a (click)="login()">Login</a></li>

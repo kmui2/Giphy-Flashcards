@@ -1,0 +1,14 @@
+<a [routerLink]="['/flashcards']">Back</a>
+<br />
+<h2 class="page-header">Edit Flashcard</h2>
+<form (submit)="onEditSubmit()">
+  <div class="form-group">
+    <label>Word</label>
+    <input class="form-control" type="text" [(ngModel)]="word" name="word" required>
+  </div>
+  <div class="form-group">
+    <label>Translation</label>
+    <input class="form-control" type="text" [(ngModel)]="translation" name="translation" required>
+  </div>
+  <input type="submit" value="submit" class="btn btn-success">
+</form>
