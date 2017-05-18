@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FirebaseService} from '../../services/firebase.service';
 import {Router, ActivatedRoute, Params} from '@angular/router';
+import { Http, Response } from '@angular/http';
 import * as firebase from 'firebase';
 
 @Component({
@@ -9,6 +10,12 @@ import * as firebase from 'firebase';
   styleUrls: ['./flashcard.component.css']
 })
 export class FlashcardComponent implements OnInit {
+
+  title = 'Welcome to GiphySearch';
+  link = 'http://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=';
+  giphies = [];
+  selectedGif: any;
+
   id: any;
   flashcard: any;
   imageUrl: any;
@@ -16,8 +23,21 @@ export class FlashcardComponent implements OnInit {
   constructor(
     private firebaseService: FirebaseService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private http: Http
   ) { }
+
+  performSearch(searchTerm: string): void {
+    var apiLink = this.link + searchTerm;
+
+    this.http.request(apiLink)
+      .subscribe((res: Response) => {
+        this.giphies = res.json().data;
+        console.log(this.giphies);
+        this.selectedGif = this.giphies[Math.floor(Math.random()*this.giphies.length)];
+        console.log("This is selected: " + this.selectedGif);
+      });
+  }
 
   ngOnInit() {
     // Get ID
@@ -36,6 +56,8 @@ export class FlashcardComponent implements OnInit {
       });
 
     });
+    console.log(this.flashcard.translation);
+    this.performSearch(this.flashcard.translation);
   }
 
   onDeleteClick() {

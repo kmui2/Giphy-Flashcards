@@ -65,7 +65,7 @@ const appRoutes: Routes = [
     HttpModule,
     FlashMessagesModule,
     AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig),
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
   ],
   providers: [FirebaseService],
   bootstrap: [AppComponent]
