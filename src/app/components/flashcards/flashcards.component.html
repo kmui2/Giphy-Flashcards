@@ -1,52 +1,5 @@
-<!-- <ul class="list-group"> -->
-<!-- <div class="tp-wrapper col-md-3 col-sm-3 col-lg-2 col-xs-2" *ngFor="let flashcard of flashcards">
-  <div class="tp-box" (click)="toggleFlip()" [@flipState]="flip">
-    <div class="tp-box__side tp-box__front">
-      <div class="text-left">
-        <h2><a [routerLink]="['/flashcard/'+flashcard.$key]">{{flashcard.word}}</a></h2>
-      </div>
-      <div class="" *ngIf="flashcard.selectedGif">
-        <img [routerLink]="['/flashcard/'+flashcard.$key]" class="thumbnail" style="width:100%" src="{{flashcard.selectedGif.images.original.url}}" />
-      </div>
-    </div>
-    <div class="tp-box__side tp-box__back">Back
-    </div>
-  </div>
-</div> -->
+<a (click)="toggleDetailedView()" class="btn btn-sm btn-info">{{toggleMessage}}</a>
 <div class="" *ngFor="let flashcard of flashcards">
-      <app-cardflip [flashcard]="flashcard"></app-cardflip>
+      <app-cardflip *ngIf="!detailed" [flashcard]="flashcard"></app-cardflip>
+      <app-flashcard *ngIf="detailed" [flashcardKey]="flashcard.$key"></app-flashcard>
 </div>
-  <!-- <div class="" *ngFor="let flashcard of flashcards">
-    <button type="button" class="btn btn-default btn-lg col-md-3 col-sm-3 col-lg-2 col-xs-2" [routerLink]="['/flashcard/'+flashcard.$key]">
-      <div class="text-left">
-        <h2><a [routerLink]="['/flashcard/'+flashcard.$key]">{{flashcard.word}}</a></h2>
-      </div>
-      <div class="" *ngIf="flashcard.selectedGif">
-        <img [routerLink]="['/flashcard/'+flashcard.$key]" class="thumbnail" style="width:100%" src="{{flashcard.selectedGif.images.original.url}}" />
-      </div>
-    </button>
-  </div> -->
-<!-- </ul> -->
-
-<!-- <table clas="table table-bordered center">
-  <tr>
-    <th>
-      Word
-    </th>
-    <th>
-      Gif
-    </th>
-  </tr>
-  <tr class="danger" *ngFor="let flashcard of flashcards">
-    <tr [routerLink]="['/flashcard/'+flashcard.$key]">
-      <td>
-        <h2><a [routerLink]="['/flashcard/'+flashcard.$key]">{{flashcard.word}}</a></h2>
-      </td>
-      <td>
-        <div *ngIf="flashcard.selectedGif">
-          <img [routerLink]="['/flashcard/'+flashcard.$key]" class="thumbnail" style="width:50%" src="{{flashcard.selectedGif.images.original.url}}" />
-        </div>
-      </td>
-    </tr>
-  </tr>
-</table> -->

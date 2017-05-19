@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {FirebaseService} from '../../services/firebase.service';
-import {Router, ActivatedRoute, Params} from '@angular/router';
+import {Router, ActivatedRoute, Params, NavigationEnd} from '@angular/router';
 import { Http, Response } from '@angular/http';
 import * as firebase from 'firebase';
 
@@ -10,7 +10,7 @@ import * as firebase from 'firebase';
   styleUrls: ['./flashcard.component.css']
 })
 export class FlashcardComponent implements OnInit {
-
+  @Input() flashcardKey; //passed from flashcards component
   title = 'Welcome to GiphySearch';
   link = 'http://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=';
   giphies = [];
@@ -19,6 +19,8 @@ export class FlashcardComponent implements OnInit {
   id: any;
   flashcard: any;
   imageUrl: any;
+  
+  backMessage: string;
   
 
   constructor(
@@ -54,8 +56,15 @@ export class FlashcardComponent implements OnInit {
 
 
   ngOnInit() {
-    // Get ID
-    this.id = this.route.snapshot.params['id'];
+    if(this.flashcardKey){
+      this.id = this.flashcardKey;
+      this.backMessage = "Back to Top";
+    }
+    else{
+      // Get ID
+      this.id = this.route.snapshot.params['id'];
+      this.backMessage = "Go Back";
+    }
 
     this.firebaseService.getFlashcardDetails(this.id).subscribe(flashcard => {
       this.flashcard = flashcard;
@@ -73,8 +82,17 @@ export class FlashcardComponent implements OnInit {
     console.log(this.flashcard.translation);
     // this.performSearch(this.flashcard.translation);
     this.performTranslationSearch();
+    
+        this.router.events.subscribe((evt) => {
+            if (!(evt instanceof NavigationEnd)) {
+                return;
+            }
+            window.scrollTo(0, 0)
+        });
   }
-
+  onEdit(){
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
+    }
   onDeleteClick() {
     this.firebaseService.deleteFlashcard(this.id);
 

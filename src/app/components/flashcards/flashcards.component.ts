@@ -31,6 +31,7 @@ export class FlashcardsComponent implements OnInit {
   detailed = false;
 
   flip: string = 'inactive';
+  toggleMessage: string = "Switch to Detailed View";
 
   constructor(
     private firebaseService: FirebaseService,
@@ -51,7 +52,13 @@ export class FlashcardsComponent implements OnInit {
   }
   
   toggleDetailedView(): void {
-    
+    this.detailed = (this.detailed == false) ? true : false;
+    if(this.detailed){
+      this.toggleMessage = "Switch to Card View";
+    }
+    else {
+      this.toggleMessage = "Switch to Detailed View";
+    }
   }
 
   ngOnInit() {

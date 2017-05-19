@@ -1,11 +1,11 @@
 <div *ngIf="flashcard">
-  <a [routerLink]="['/flashcards']">Go Back</a>
+  <a [routerLink]="['/flashcards']" (click)="onEdit()">{{backMessage}}</a>
   <br>
   <h2 class="page-header">{{flashcard.word}} <small>{{flashcard.meaning}}</small></h2>
   <div class="row">
     <div class="col-md-4">
       <input name="search" #searchTerm value="{{flashcard.translation}}" (keyup.enter)="performSearch(searchTerm.value)">
-      <button (click)="performSearch(searchTerm.value)">Search</button>
+      <!-- <button (click)="performSearch(searchTerm.value)">Search</button> -->
       <br>
       <div *ngIf="selectedGif">
         <img class="thumbnail" style="width:100%" src="{{selectedGif.images.original.url}}" />
