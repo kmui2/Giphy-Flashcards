@@ -19,6 +19,7 @@ export class FlashcardComponent implements OnInit {
   id: any;
   flashcard: any;
   imageUrl: any;
+  
 
   constructor(
     private firebaseService: FirebaseService,
@@ -49,6 +50,7 @@ export class FlashcardComponent implements OnInit {
         console.log("This is selected: " + this.selectedGif);
       });
   }
+  
 
 
   ngOnInit() {

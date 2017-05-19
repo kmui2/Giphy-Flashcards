@@ -18,6 +18,7 @@ import { EditFlashcardComponent } from './components/edit-flashcard/edit-flashca
 import { AddFlashcardComponent } from './components/add-flashcard/add-flashcard.component';
 import { FlashcardComponent } from './components/flashcard/flashcard.component';
 import { FlashcardsComponent } from './components/flashcards/flashcards.component';
+import { CardflipComponent } from './components/cardflip/cardflip.component';
 
 export const firebaseConfig = {
     apiKey: "AIzaSyAKue96FibAqWFcQ53_Ya8neqOSmZu4K7E",
@@ -57,7 +58,8 @@ const appRoutes: Routes = [
     EditFlashcardComponent,
     AddFlashcardComponent,
     FlashcardComponent,
-    FlashcardsComponent
+    FlashcardsComponent,
+    CardflipComponent
   ],
   imports: [
     BrowserModule,

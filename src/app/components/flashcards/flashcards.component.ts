@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, trigger, state, style, transition, animate } from '@angular/core';
 import {FirebaseService} from '../../services/firebase.service';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import { Http, Response } from '@angular/http';
@@ -7,41 +7,65 @@ import * as firebase from 'firebase';
 @Component({
   selector: 'app-flashcards',
   templateUrl: './flashcards.component.html',
-  styleUrls: ['./flashcards.component.css']
+  styleUrls: ['./flashcards.component.css'],
+  animations: [
+    trigger('flipState', [
+      state('active', style({
+        transform: 'rotateY(179.9deg)'
+      })),
+      state('inactive', style({
+        transform: 'rotateY(0)'
+      })),
+      transition('active => inactive', animate('500ms ease-out')),
+      transition('inactive => active', animate('500ms ease-in'))
+    ])
+  ]
 })
 export class FlashcardsComponent implements OnInit {
-  flashcards:any;
+  flashcards: any;
   title = 'Welcome to GiphySearch';
   link = 'http://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=';
   giphies = [];
   selectedGif: any;
+  
+  detailed = false;
+
+  flip: string = 'inactive';
 
   constructor(
     private firebaseService: FirebaseService,
     private router: Router,
     private route: ActivatedRoute,
     private http: Http) { }
-  
+
   performTranslationSearch(flashcard): void {
     var apiLink = this.link + flashcard.translation;
-  
+
     this.http.request(apiLink)
       .subscribe((res: Response) => {
         this.giphies = res.json().data;
         console.log(this.giphies);
-        flashcard.selectedGif = this.giphies[Math.floor(Math.random()*this.giphies.length)];
+        flashcard.selectedGif = this.giphies[Math.floor(Math.random() * this.giphies.length)];
         console.log("This is selected: " + flashcard.selectedGif);
       });
   }
   
+  toggleDetailedView(): void {
+    
+  }
+
   ngOnInit() {
     this.firebaseService.getFlashcards().subscribe(flashcards => {
       console.log(flashcards);
       this.flashcards = flashcards;
-      for (let f of this.flashcards){
+      for (let f of this.flashcards) {
         this.performTranslationSearch(f);
       }
     });
   }
 
+
+  toggleFlip() {
+    this.flip = (this.flip == 'inactive') ? 'active' : 'inactive';
+  }
 }
