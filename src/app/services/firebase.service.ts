@@ -51,16 +51,18 @@ export class FirebaseService {
   }
 
   addFlashcard(flashcard){
-    let storageRef = firebase.storage().ref();
-    for(let selectedFile of [(<HTMLInputElement>document.getElementById('image')).files[0]]){
-      let path = `/${this.flashcardFolder}/${selectedFile.name}`;
-      let iRef = storageRef.child(path);
-      iRef.put(selectedFile).then((snapshot) => {
-        flashcard.image = selectedFile.name;
-        flashcard.path = path;
-        return this.flashcards.push(flashcard);
-      });
-    }
+    // let storageRef = firebase.storage().ref();
+    // for(let selectedFile of [(<HTMLInputElement>document.getElementById('image')).files[0]]){
+    //   let path = `/${this.flashcardFolder}/${selectedFile.name}`;
+    //   let iRef = storageRef.child(path);
+    //   iRef.put(selectedFile).then((snapshot) => {
+    //     flashcard.image = selectedFile.name;
+    //     flashcard.path = path;
+    //     return this.flashcards.push(flashcard);
+    //   });
+    // }
+    // let path = `/${this.flashcardFolder}/${selectedFile.name}`;
+    return this.flashcards.push(flashcard);
   }
 
   updateListing(id, listing){

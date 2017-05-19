@@ -1,5 +1,12 @@
 <ul class="list-group">
   <li class="list-group-item" *ngFor="let flashcard of flashcards">
-    <a [routerLink]="['/flashcard/'+flashcard.$key]">{{flashcard.word}}</a>
+    <div class="row" [routerLink]="['/flashcard/'+flashcard.$key]">
+      <div class="text-left col-md-6">
+        <h2><a [routerLink]="['/flashcard/'+flashcard.$key]">{{flashcard.word}}</a></h2>
+      </div>
+      <div class="text-right col-md-6" *ngIf="flashcard.selectedGif">
+        <img [routerLink]="['/flashcard/'+flashcard.$key]" class="thumbnail" style="width:50%" src="{{flashcard.selectedGif.images.original.url}}" />
+      </div>
+    </div>
   </li>
 </ul>
